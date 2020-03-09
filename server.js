@@ -32,7 +32,11 @@ const Apollo = new ApolloServer({
 Apollo.applyMiddleware({ app });
 
 mongoose
-  .connect(MONGO_URI, { useUnifiedTopology: true, useNewUrlParser: true })
+  .connect(MONGO_URI, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
   .then(() => console.log("DB 접속 완료"))
   .catch(error => console.error(error));
 
