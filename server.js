@@ -6,8 +6,7 @@ const bodyParser = require("body-parser");
 const { ApolloServer } = require("apollo-server-express");
 
 // GraphQL
-const { typeDefs } = require("./schema");
-const { resolvers } = require("./resolvers");
+const schema = require("./schema");
 
 // 환경설정 변수
 const PORT = process.env.PORT;
@@ -15,12 +14,16 @@ const MONGO_URI = process.env.MONGO_URI;
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 const Apollo = new ApolloServer({
-  typeDefs: typeDefs,
-  resolvers: resolvers,
+  schema,
   playground: {
     endpoint: "/graphql",
     settings: {

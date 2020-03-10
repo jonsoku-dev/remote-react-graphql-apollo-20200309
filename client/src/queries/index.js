@@ -1,13 +1,22 @@
 import { gql } from "apollo-boost";
-
 export const SAY_HELLO = gql`
   query {
-    sayHello {
+    sayHello(name: "짬뽕") {
       success
       error
       data
-      pagination
-      view
+    }
+  }
+`;
+
+export const SIGN_UP_USER = gql`
+  mutation($name: String!, $email: String!, $password: String!) {
+    signup(name: $name, email: $email, password: $password) {
+      success
+      error
+      data {
+        name
+      }
     }
   }
 `;
