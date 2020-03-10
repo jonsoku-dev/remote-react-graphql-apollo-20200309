@@ -1,31 +1,21 @@
-exports.typeDefs = `
-    type User {
-        _id: ID
-        name: String!
-        email: String!
-        password: String!
-        joinDate: String
-    }
+const { makeExecutableSchema } = require("graphql-tools");
+const {
+  fileLoader,
+  mergeResolvers,
+  mergeTypes
+} = require("merge-graphql-schemas");
+const path = require("path");
 
-    type sayHelloResponse {
-        success: Boolean!
-        error: String
-        data: [String]
-        pagination: Int
-        view: Float
-    }
+const allTypes = fileLoader(path.join(__dirname, "./api/**/*.graphql"));
 
-    type Query {
-        sayHello: sayHelloResponse!
-    }
+const allResolvers = fileLoader(path.join(__dirname, "./api/**/*.resolvers.*"));
 
-    type signUpResponse {
-        success: Boolean!
-        data: User
-        error: String
-    }
+const mergedTypes = mergeTypes(allTypes);
+const mergedResolvers = mergeResolvers(allResolvers);
 
-    type Mutation {
-        signUp(name: String!, email: String!, password: String!): signUpResponse!
-    }
-`;
+const schema = makeExecutableSchema({
+  typeDefs: mergedTypes,
+  resolvers: mergedResolvers
+});
+
+module.exports = schema;
