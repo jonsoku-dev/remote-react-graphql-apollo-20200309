@@ -4,7 +4,7 @@
   "description": "React-Apollo-GraphQL",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js",
+    "server": "nodemon -e js,graphql server.js",
     "client": "cd client && npm start",
     "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
   },
