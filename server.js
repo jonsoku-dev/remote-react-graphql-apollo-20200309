@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { ApolloServer } = require("apollo-server-express");
+const verifyJWT = require("./utils/verifyJWT");
+const morgan = require("morgan");
 
 // GraphQL
 const schema = require("./schema");
@@ -21,6 +23,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(morgan("dev"));
+app.use((req, res, next) => verifyJWT(req, res, next));
 
 const Apollo = new ApolloServer({
   schema,
@@ -29,6 +33,11 @@ const Apollo = new ApolloServer({
     settings: {
       "editor.theme": "light"
     }
+  },
+  context: req => {
+    return {
+      userId: req.req.userId
+    };
   }
 });
 

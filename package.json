@@ -23,7 +23,9 @@
     "graphql-tools": "^4.0.7",
     "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.6",
-    "mongoose": "^5.9.3"
+    "mongoose": "^5.9.3",
+    "morgan": "^1.9.1",
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

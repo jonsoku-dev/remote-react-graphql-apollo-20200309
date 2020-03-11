@@ -1,24 +1,28 @@
 const User = require("../../../models/User");
+const comparePassword = require("../../../utils/comparePassword");
 const createJWT = require("../../../utils/createJWT");
 
 const resolver = {
   Mutation: {
-    signup: async (parent, { name, email, password }, context, info) => {
+    signin: async (parent, { email, password }, context, info) => {
       try {
         const existingUser = await User.findOne({ email });
-        if (existingUser) {
+        if (!existingUser) {
           return {
             success: false,
-            error: "해당 이메일이 존재합니다.",
+            error: "유저정보가 존재하지않습니다. ",
             token: null
           };
         }
-        const newUser = await User.create({
-          name: name,
-          email: email,
-          password: password
-        });
-        const token = await createJWT(newUser);
+        const isCorrect = await comparePassword(existingUser, password);
+        if (!isCorrect) {
+          return {
+            success: false,
+            error: "비밀번호가 일치하지않습니다. ",
+            token: null
+          };
+        }
+        const token = await createJWT(existingUser);
         return {
           success: true,
           error: null,
@@ -34,4 +38,5 @@ const resolver = {
     }
   }
 };
+
 module.exports = resolver;

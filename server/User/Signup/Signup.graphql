@@ -1,7 +1,7 @@
 type SignupResponse {
   success: Boolean!
   error: String
-  data: User
+  token: String
 }
 
 type Mutation {
