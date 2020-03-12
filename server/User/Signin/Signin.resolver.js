@@ -1,13 +1,6 @@
 const User = require("../../../models/User");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-
-const createJWT = user => {
-  const { _id } = user;
-  return jwt.sign({ _id }, process.env.JWT_SECRET, {
-    expiresIn: "1h"
-  });
-};
+const createJWT = require("../../../utils/createJWT");
 
 const resolver = {
   Mutation: {

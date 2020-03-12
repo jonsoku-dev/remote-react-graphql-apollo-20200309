@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { SIGN_IN_USER } from "./SigninQuery";
-import { SIGN_IN_USER_LOCAL } from "../../queries";
+import { SIGN_IN_USER_LOCAL } from "../../shared.local";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
+
 const Signin = props => {
   const initialState = {
     email: "",
@@ -35,6 +36,7 @@ const Signin = props => {
   });
   const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
+
   const handleChange = event => {
     const {
       target: { name, value }
@@ -44,6 +46,7 @@ const Signin = props => {
       [name]: value
     });
   };
+
   const handleSubmit = async event => {
     try {
       event.preventDefault();
@@ -58,6 +61,7 @@ const Signin = props => {
       alert(error);
     }
   };
+
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>로그인</h1>
@@ -90,6 +94,7 @@ const Signin = props => {
     </div>
   );
 };
+
 const inputStyle = {
   width: "100%",
   marginBottom: "10px",
@@ -99,6 +104,7 @@ const inputStyle = {
   fontWeight: "900",
   boxSizing: "border-box"
 };
+
 const buttonStyle = {
   width: "100%",
   boxSizing: "border-box",
@@ -108,4 +114,5 @@ const buttonStyle = {
   fontSize: "16px",
   fontWeight: "900"
 };
+
 export default withRouter(Signin);

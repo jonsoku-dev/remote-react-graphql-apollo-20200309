@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
-import { LOG_OUT_USER_LOCAL } from "../../queries";
+import { LOG_OUT_USER_LOCAL } from "../../shared.local";
 import { toast } from "react-toastify";
 
 const Header = ({ isLoggedIn }) => {

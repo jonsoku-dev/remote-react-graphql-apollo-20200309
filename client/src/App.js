@@ -11,7 +11,8 @@ import {
   Redirect
 } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
-import { IS_LOGGED_IN } from "./queries";
+import { IS_LOGGED_IN } from "./shared.local";
+import Footer from "./components/Footer";
 
 const App = () => {
   const {
@@ -29,6 +30,7 @@ const App = () => {
         <Route path={"/mypage"} exact component={Mypage} />
         <Redirect to={"/"} from={"*"} />
       </Switch>
+      <Footer />
     </Router>
   );
 };

@@ -7,3 +7,7 @@ type SignupResponse {
 type Mutation {
   signup(name: String!, email: String!, password: String!): SignupResponse!
 }
+
+type Query {
+  sayHello: String
+}
