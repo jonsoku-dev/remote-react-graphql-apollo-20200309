@@ -1,0 +1,18 @@
+input UpdatePostByIdInput {
+  title: String
+  description: String
+  imgUrl: String
+}
+
+type UpdatePostByIdResponse {
+  success: Boolean!
+  error: String
+  data: Post
+}
+
+type Mutation {
+  updatePostById(
+    input: UpdatePostByIdInput
+    postId: ID!
+  ): UpdatePostByIdResponse!
+}

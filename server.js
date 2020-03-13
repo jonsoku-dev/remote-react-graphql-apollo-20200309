@@ -30,15 +30,13 @@ app.use(async (req, res, next) => {
       let userId = await jwt.verify(token, process.env.JWT_SECRET || "");
       userId = userId._id;
       req.userId = userId;
+    } else {
+      req.userId = null;
     }
     next();
   } catch (error) {
     console.log(error);
-    return {
-      success: false,
-      error: "토큰 인증 에러입니다.",
-      data: null
-    };
+    next();
   }
 });
 
@@ -51,6 +49,7 @@ const Apollo = new ApolloServer({
     }
   },
   context: ({ req }) => {
+    console.log(req.userId);
     return {
       currentUserId: req.userId
     };
@@ -68,7 +67,8 @@ mongoose
   .connect(MONGO_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: true
   })
   .then(() => console.log("DB 접속 완료"))
   .catch(error => console.error(error));
