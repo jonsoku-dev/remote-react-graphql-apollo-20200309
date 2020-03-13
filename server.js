@@ -54,6 +54,11 @@ const Apollo = new ApolloServer({
     return {
       currentUserId: req.userId
     };
+  },
+  formatError(error) {
+    return {
+      error: error.message
+    };
   }
 });
 
