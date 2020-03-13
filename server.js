@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { ApolloServer } = require("apollo-server-express");
+const jwt = require("jsonwebtoken");
 
 // GraphQL
 const schema = require("./schema");
@@ -22,6 +23,25 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+app.use(async (req, res, next) => {
+  const token = req.headers.authorization;
+  try {
+    if (token) {
+      let userId = await jwt.verify(token, process.env.JWT_SECRET || "");
+      userId = userId._id;
+      req.userId = userId;
+    }
+    next();
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      error: "토큰 인증 에러입니다.",
+      data: null
+    };
+  }
+});
+
 const Apollo = new ApolloServer({
   schema,
   playground: {
@@ -29,6 +49,11 @@ const Apollo = new ApolloServer({
     settings: {
       "editor.theme": "light"
     }
+  },
+  context: ({ req }) => {
+    return {
+      currentUserId: req.userId
+    };
   }
 });
 

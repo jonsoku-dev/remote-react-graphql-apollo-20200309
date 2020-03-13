@@ -1,0 +1,9 @@
+type GetPostsResponse {
+  success: Boolean!
+  error: String
+  data: [Post!]
+}
+
+type Query {
+  getPosts: GetPostsResponse!
+}

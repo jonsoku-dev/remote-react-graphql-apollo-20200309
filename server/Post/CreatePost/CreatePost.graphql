@@ -1,0 +1,13 @@
+input CreatePostInput {
+  title: String!
+  description: String!
+  imgUrl: String
+}
+type CreatePostResponse {
+  success: Boolean!
+  error: String
+  data: Post
+}
+type Mutation {
+  createPost(input: CreatePostInput!): CreatePostResponse!
+}

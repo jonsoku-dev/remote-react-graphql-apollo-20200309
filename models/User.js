@@ -16,7 +16,13 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: [true, "비밀번호를 입력하세요"]
-    }
+    },
+    posts: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Post"
+      }
+    ]
   },
   {
     timestamps: true

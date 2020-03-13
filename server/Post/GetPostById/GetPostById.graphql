@@ -1,0 +1,9 @@
+type GetPostByIdResponse {
+  success: Boolean!
+  error: String
+  data: Post
+}
+
+type Query {
+  getPostById(postId: ID!): GetPostByIdResponse!
+}
