@@ -8,6 +8,7 @@ import { ApolloProvider } from "react-apollo";
 // Toast
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "normalize.css";
 
 ReactDOM.render(
   <ApolloProvider client={apollo}>

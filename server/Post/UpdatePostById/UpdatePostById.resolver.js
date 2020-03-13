@@ -24,7 +24,7 @@ const resolver = {
           model: "User",
           select: "id name"
         });
-        if (currentUserId !== post.user.toString()) {
+        if (currentUserId !== post.user._id.toString()) {
           return {
             success: false,
             error: "권한이 없습니다. ",
@@ -34,7 +34,7 @@ const resolver = {
         return {
           success: true,
           error: null,
-          data: updatedPost
+          data: post
         };
       } catch (error) {
         return {

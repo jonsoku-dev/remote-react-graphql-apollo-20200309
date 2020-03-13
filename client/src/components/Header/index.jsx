@@ -47,6 +47,9 @@ const Header = ({ isLoggedIn }) => {
             <Link style={LinkStyle} to="/mypage">
               MY PAGE
             </Link>
+            <Link style={LinkStyle} to="/post">
+              POST
+            </Link>
             <Link style={LinkStyle} to="!#" onClick={logoutLocalFn}>
               LOGOUT
             </Link>

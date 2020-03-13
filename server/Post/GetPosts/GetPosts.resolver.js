@@ -9,6 +9,7 @@ const resolver = {
           model: "User",
           select: "id name email"
         });
+
         return {
           success: true,
           error: null,

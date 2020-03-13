@@ -49,12 +49,12 @@ const Apollo = new ApolloServer({
     }
   },
   context: ({ req }) => {
-    console.log(req.userId);
     return {
       currentUserId: req.userId
     };
   },
   formatError(error) {
+    console.log(error);
     return {
       error: error.message
     };
@@ -68,7 +68,7 @@ mongoose
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: true
+    useFindAndModify: false
   })
   .then(() => console.log("DB 접속 완료"))
   .catch(error => console.error(error));
