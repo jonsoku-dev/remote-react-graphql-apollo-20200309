@@ -17,7 +17,8 @@ const postSchema = new Schema(
     },
     imgUrl: {
       type: String,
-      default: "noImage.png"
+      default:
+        "https://b-rise.jp/wp-content/themes/b-rise/images/sample_img.gif"
     },
     user: {
       type: mongoose.Types.ObjectId,

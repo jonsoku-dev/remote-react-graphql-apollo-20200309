@@ -56,7 +56,12 @@ const GetPostByIdContainer = ({
   if (loading) return <></>;
 
   const post = data.getPostById.data;
-  const currentUser = userData.getMe.data;
+
+  let currentUser = {};
+  if (userData) {
+    currentUser = userData.getMe.data;
+  }
+
   return (
     <div>
       <GetPostByIdPresenter

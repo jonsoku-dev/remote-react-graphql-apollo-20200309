@@ -39,7 +39,9 @@ const PostFormContainer = ({ history, match }) => {
     variables: {
       title: formData.title,
       description: formData.description,
-      imgUrl: formData.imgUrl.length === 0 ? null : formData.imgUrl
+      imgUrl: formData.imgUrl
+        ? formData.imgUrl
+        : "https://b-rise.jp/wp-content/themes/b-rise/images/sample_img.gif"
     },
     onCompleted({ createPost: { success, error, data } }) {
       if (error) {
@@ -56,7 +58,7 @@ const PostFormContainer = ({ history, match }) => {
     variables: {
       title: formData.title,
       description: formData.description,
-      imgUrl: formData.imgUrl.length === 0 ? null : formData.imgUrl,
+      imgUrl: formData.imgUrl,
       postId: match.params.postId
     },
     onCompleted({ updatePostById: { success, error, data } }) {
@@ -88,7 +90,13 @@ const PostFormContainer = ({ history, match }) => {
     if (match.params.postId) {
       updatePostByIdFn();
     } else {
-      createPostFn();
+      if (formData.title.length === 0 || formData.description.length === 0) {
+        toast.error("title , description, imgUrl 을 확인해주세요. ");
+        return;
+      } else {
+        createPostFn();
+        return;
+      }
     }
   };
 

@@ -119,9 +119,9 @@ const GetPostByIdPresenter = ({
   title,
   description,
   imgUrl,
-  user: { id: postUserId, name },
+  user,
   createdAt,
-  currentUser: { id: currentUserId }
+  currentUser
 }) => {
   return (
     <Container>
@@ -129,7 +129,7 @@ const GetPostByIdPresenter = ({
         <ImageBox imgUrl={imgUrl} />
         <DataBox>
           <Title>{title}</Title>
-          <Author>{name}</Author>
+          <Author>{user && user.name}</Author>
           <Description>{description}</Description>
           {/** todo */}
           <CreatedAt>{createdAt}</CreatedAt>
@@ -137,7 +137,7 @@ const GetPostByIdPresenter = ({
       </ContentBox>
       <ButtonBox>
         <DefaultButton onClick={handleGoBack}>뒤로가기</DefaultButton>
-        {currentUserId === postUserId && (
+        {currentUser && user && currentUser.id === user.id && (
           <>
             <UpdateButton onClick={() => handleUpdate(id)}>
               포스트수정

@@ -78,7 +78,7 @@ const PostItem = ({
   id,
   title,
   description,
-  imgUrl,
+  imgUrl = "https://b-rise.jp/wp-content/themes/b-rise/images/sample_img.gif",
   user: { name },
   createdAt
 }) => {

@@ -61,6 +61,9 @@ const Header = ({ isLoggedIn, history }) => {
             <Link style={LinkStyle} to="/">
               HOME
             </Link>
+            <Link style={LinkStyle} to="/post">
+              POST
+            </Link>
             <Link style={LinkStyle} to="/signin">
               SIGN IN
             </Link>

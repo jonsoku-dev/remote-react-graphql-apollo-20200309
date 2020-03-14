@@ -47,18 +47,20 @@ const GridContainer = styled.div`
   }
 `;
 
-const GetPostsPresenter = ({ posts, history }) => {
+const GetPostsPresenter = ({ posts, history, isLoggedIn }) => {
   return (
     <Container>
-      <ButtonBox>
-        <WriteButton
-          onClick={() => {
-            history.push("/post/create");
-          }}
-        >
-          포스트작성
-        </WriteButton>
-      </ButtonBox>
+      {isLoggedIn && (
+        <ButtonBox>
+          <WriteButton
+            onClick={() => {
+              history.push("/post/create");
+            }}
+          >
+            포스트작성
+          </WriteButton>
+        </ButtonBox>
+      )}
       <GridContainer>
         {posts.map(post => (
           <PostItem key={post.id} history={history} {...post} />

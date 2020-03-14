@@ -21,21 +21,34 @@ const App = () => {
   const {
     data: {
       auth: { isLoggedIn }
-    }
+    },
+    loading,
+    error
   } = useQuery(IS_LOGGED_IN);
+
+  if (error) return <></>;
+  if (loading) return <></>;
+
   return (
     <Router>
       <Header isLoggedIn={isLoggedIn} />
       <Switch>
         <Route path={"/"} exact component={Home} />
-        <Route path={"/signup"} exact component={Signup} />
-        <Route path={"/signin"} exact component={Signin} />
-        <Route path={"/mypage"} exact component={Mypage} />
-        <Route path={"/post"} exact component={GetPosts} />
-        <Route path={"/post/create"} exact component={PostForm} />
+        <Route path={"/signup"} component={Signup} />
+        <Route path={"/signin"} component={Signin} />
+        {isLoggedIn && <Route path={"/mypage"} component={Mypage} />}
+        <Route path={"/post"} exact>
+          <GetPosts isLoggedIn={isLoggedIn} />
+        </Route>
+        {isLoggedIn && (
+          <Route path={"/post/create"} exact component={PostForm} />
+        )}
         <Route path={"/post/:postId"} exact component={GetPostById} />
-        <Route path={"/post/:postId/update"} exact component={PostForm} />
-        <Redirect to={"/"} from={"*"} />
+        {isLoggedIn && (
+          <Route path={"/post/:postId/update"} exact component={PostForm} />
+        )}
+
+        <Redirect from={"*"} to={"/"} />
       </Switch>
       <Footer />
     </Router>
