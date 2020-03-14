@@ -1,0 +1,9 @@
+type GetMeRepsonse {
+  success: Boolean!
+  error: String
+  data: User
+}
+
+type Query {
+  getMe: GetMeRepsonse!
+}

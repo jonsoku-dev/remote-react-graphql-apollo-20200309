@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import { LOG_OUT_USER_LOCAL } from "../../shared.local";
 import { toast } from "react-toastify";
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, history }) => {
   const [logoutLocalFn] = useMutation(LOG_OUT_USER_LOCAL, {
     onCompleted() {
       toast.info("로그아웃되었습니다.");
@@ -24,8 +24,10 @@ const Header = ({ isLoggedIn }) => {
       <div
         style={{
           width: "200px",
-          height: "auto"
+          height: "auto",
+          cursor: "pointer"
         }}
+        onClick={() => history.push("/post")}
       >
         <img
           src="https://pngimg.com/uploads/tesla_logo/tesla_logo_PNG21.png"
@@ -81,4 +83,4 @@ const LinkStyle = {
   fontWeight: "900"
 };
 
-export default Header;
+export default withRouter(Header);
