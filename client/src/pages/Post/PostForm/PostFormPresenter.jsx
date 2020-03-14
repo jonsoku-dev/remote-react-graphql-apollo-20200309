@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import mediaQuery from "../../../style/mediaQuery";
 
 const Container = styled.div`
-  width: 1000px;
-  margin: 80px auto;
+  width: 100%;
+  margin: 80px 0;
+  ${mediaQuery(2)} {
+    width: 1000px;
+    margin: 80px auto;
+  }
 `;
 
 const Form = styled.form`

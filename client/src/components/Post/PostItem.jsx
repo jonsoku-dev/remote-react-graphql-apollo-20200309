@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import mediaQuery from "../../style/mediaQuery";
 
 const Container = styled.div`
   width: 100%;
@@ -22,9 +23,11 @@ const Container = styled.div`
     transform: scale(1.03);
   }
   &:first-of-type {
-    grid-column: 1 / -1;
-    background-size: fill;
-    height: 600px;
+    ${mediaQuery(2)} {
+      grid-column: 1 / -1;
+      background-size: fill;
+      height: 600px;
+    }
   }
 `;
 

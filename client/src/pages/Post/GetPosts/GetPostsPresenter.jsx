@@ -1,10 +1,17 @@
 import React from "react";
 import PostItem from "../../../components/Post/PostItem";
 import styled from "styled-components";
+import mediaQuery from "../../../style/mediaQuery";
 
 const Container = styled.div`
-  width: 1000px;
-  margin: 80px auto;
+  width: 100%;
+  margin: 80px 0;
+  ${mediaQuery(2)} {
+    width: 1000px;
+    margin: 80px auto;
+  }
+  box-sizing: border-box;
+  padding: 0 16px;
 `;
 
 const ButtonBox = styled.div`
@@ -30,8 +37,14 @@ const WriteButton = styled.div`
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 32px;
+  ${mediaQuery(2)} {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 32px;
+    width: 1000px;
+    margin: 80px auto;
+  }
 `;
 
 const GetPostsPresenter = ({ posts, history }) => {

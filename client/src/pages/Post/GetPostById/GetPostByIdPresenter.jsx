@@ -1,14 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import mediaQuery from "../../../style/mediaQuery";
 
 const Container = styled.div`
-  width: 1000px;
-  margin: 0 auto;
-  padding: 128px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 16px;
+  margin: 80px 0;
+  ${mediaQuery(2)} {
+    width: 1000px;
+    margin: 80px auto;
+  }
 `;
 
 const ContentBox = styled.div`
-  display: flex;
+  ${mediaQuery(2)} {
+    display: flex;
+  }
 `;
 
 const ImageBox = styled.div`
@@ -35,6 +43,7 @@ const DataBox = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 32px;
   > div {
     margin: 8px 0;
   }
