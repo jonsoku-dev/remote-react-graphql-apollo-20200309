@@ -1,4 +1,4 @@
-const Post = require("../../../models/Post");
+const Post = require("../../../database/models/Post");
 
 const resolver = {
   Query: {

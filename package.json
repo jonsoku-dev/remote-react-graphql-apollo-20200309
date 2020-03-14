@@ -4,9 +4,11 @@
   "description": "React-Apollo-GraphQL",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "server": "nodemon -e js,graphql server.js",
     "client": "cd client && npm start",
-    "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
+    "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\"",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -29,5 +31,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
+  },
+  "engines": {
+    "node": "v12.16.1"
   }
 }

@@ -1,7 +1,8 @@
 import ApolloClient from "apollo-boost";
 
 export const apollo = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  // uri: "http://localhost:4000/graphql",
+  uri: "https://tamastudy-remote.herokuapp.com/graphql",
   fetchOptions: {
     credentials: "include"
   },
